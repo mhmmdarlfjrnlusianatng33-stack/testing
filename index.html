@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenangan Bersama</title>
+    <meta name="description" content="Ruang digital untuk menyimpan kenangan-kenangan berharga bersama seseorang.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Lucide Icons via CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="theme-modern">
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo" id="nav-logo">Kenangan Kita</h1>
+            <ul class="nav-links">
+                <li><a href="#home" class="active" data-link="home">Home</a></li>
+                <li><a href="#timeline" data-link="timeline">Timeline</a></li>
+                <li><a href="#add" data-link="add"><i data-lucide="plus-circle"></i> Tambah</a></li>
+                <li><a href="#profile" data-link="profile"><i data-lucide="settings"></i> Profil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- HOME SECTION -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1 id="hero-title">Kenangan Bersama</h1>
+                <p>Simpan momen berharga, foto, suara, dan cerita kita di satu tempat.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="navigate('add')">Buat Kenangan Baru</button>
+                    <button class="btn btn-secondary" onclick="navigate('timeline')">Lihat Timeline</button>
+                </div>
+            </div>
+            
+            <div class="recent-memories">
+                <h2>Kenangan Terbaru</h2>
+                <div class="memory-grid" id="home-memory-grid">
+                    <!-- Memories will be populated here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ADD MEMORY SECTION -->
+        <section id="add" class="page">
+            <div class="container">
+                <div class="card add-memory-card">
+                    <h2>Tambah Kenangan Baru</h2>
+                    <form id="add-memory-form">
+                        <div class="form-group">
+                            <label for="memory-title">Judul Kenangan</label>
+                            <input type="text" id="memory-title" placeholder="Misal: Liburan ke Bali" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="memory-date">Tanggal</label>
+                            <input type="date" id="memory-date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Foto Kenangan</label>
+                            <div class="upload-area" id="photo-upload-area">
+                                <i data-lucide="image"></i>
+                                <span>Klik atau Drop foto di sini</span>
+                                <input type="file" id="memory-photo" accept="image/*" class="hidden-input">
+                            </div>
+                            <div id="photo-preview" class="preview-container"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Voice Note</label>
+                            <div class="audio-recorder">
+                                <button type="button" class="btn btn-outline" id="btn-record">
+                                    <i data-lucide="mic"></i> Rekam Suara
+                                </button>
+                                <span id="recording-status"></span>
+                            </div>
+                            <div id="audio-preview" class="preview-container"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="memory-story">Cerita Singkat</label>
+                            <textarea id="memory-story" rows="4" placeholder="Ceritakan tentang momen ini..." required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">Simpan Kenangan</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- TIMELINE SECTION -->
+        <section id="timeline" class="page">
+            <div class="container">
+                <h2 class="page-title">Timeline Perjalanan Kita</h2>
+                <div class="timeline-container" id="timeline-list">
+                    <!-- Timeline items will be populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFILE / SETTINGS SECTION -->
+        <section id="profile" class="page">
+            <div class="container">
+                <div class="card profile-card">
+                    <h2>Pengaturan Profil</h2>
+                    
+                    <div class="form-group">
+                        <label for="setting-title">Ubah Judul Utama</label>
+                        <input type="text" id="setting-title" value="Kenangan Bersama">
+                        <button class="btn btn-secondary mt-2" id="btn-save-title">Simpan Judul</button>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label>Pilih Tema Tampilan</label>
+                        <div class="theme-options">
+                            <button class="theme-btn active" data-theme="theme-modern">Modern</button>
+                            <button class="theme-btn" data-theme="theme-vintage">Vintage</button>
+                            <button class="theme-btn" data-theme="theme-retro">Retro</button>
+                        </div>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label>Data Management</label>
+                        <button class="btn btn-danger" id="btn-clear-data">Hapus Semua Kenangan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEMORY DETAIL MODAL -->
+        <div class="modal" id="memory-modal">
+            <div class="modal-content card">
+                <button class="close-btn" id="close-modal"><i data-lucide="x"></i></button>
+                <div id="modal-body">
+                    <!-- Content populated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
